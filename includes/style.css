@@ -1,0 +1,757 @@
+/*
+    Bố cục (Layout) đã được viết lại để giống Valvrareteam
+    (Header/Nav 100%, Content 80%)
+*/
+
+/* === KHỞI TẠO CHUNG === */
+* {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    /* Rất quan trọng: Đảm bảo padding không làm vỡ layout */
+    box-sizing: border-box; 
+}
+a {
+    color: #777;
+    text-decoration: none;
+}
+a:hover {
+    color: #333;
+    text-decoration: none;
+}
+
+/* === NỀN GIF CHO TOÀN TRANG === */
+/* body */
+body {
+    background-image: url('../images/bg_test.gif'); 
+    background-size: cover; 
+    background-attachment: fixed; 
+    background-repeat: no-repeat; 
+    background-position: center center; 
+    
+    color:#555;
+    font:0.8em Arial, Helvetica, "bitstream vera sans", sans-serif;
+    
+    /* --- THÊM 3 DÒNG NÀY ĐỂ DÍNH FOOTER --- */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Quan trọng: Đảm bảo body cao ít nhất 100% màn hình */
+}
+
+/* === KHUNG 80% (DÙNG CHUNG) === */
+/* Class này dùng để "hóp" nội dung ở giữa */
+.container {
+    width: 90%; /* Chiếm 80% màn hình */
+    max-width: 1500px; /* Nhưng không rộng quá 1200px */
+    margin: 0 auto; /* Tự động căn giữa */
+    position: relative; /* Dùng để định vị con (như search, user menu) */
+    height: 100%;
+}
+
+/* === HEADER (TRÀN 100%) === */
+#header {
+    background: #ffffff; /* Nền trắng */
+    border-bottom: 1px solid #999;
+    height: 80px;
+    width: 100%; /* Tràn 100% */
+}
+#header h1 {
+    color: #888;
+    font-size: 200%;
+    letter-spacing: -3px;
+    padding: 5px 0;
+    margin-top: 20px;
+    float: left; 
+    text-align: left;
+}
+#header img {
+    width: 7%;
+    padding: 5px 0;
+    margin-top: 10px;
+    float: left; 
+    text-align: left;
+}
+
+/* === KHU VỰC USER (MỚI) === */
+.header-user-area {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+}
+/* Nút Đăng nhập / Đăng ký */
+.btn-header {
+    display: inline-block;
+    padding: 8px 15px;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    margin-left: 10px;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+.btn-login { background-color: #337ab7; }
+.btn-login:hover { background-color: #286090; }
+.btn-register { background-color: #555; }
+.btn-register:hover { background-color: #0cc06c; }
+
+/* Menu Dropdown của User */
+.user-dropdown-container {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+.user-trigger {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    color: #333;
+    
+    /* --- THÊM DÒNG NÀY --- */
+    white-space: nowrap; /* Bắt buộc tên và ảnh nằm trên 1 dòng thẳng tắp */
+}
+#header .user-trigger img {
+    /* Kích thước mong muốn */
+    width: 32px;
+    height: 32px;
+    
+    /* --- KHẮC PHỤC: ÉP CỨNG KÍCH THƯỚC --- */
+    min-width: 32px;  /* Quan trọng: Không cho phép nhỏ hơn 32px */
+    min-height: 32px; /* Quan trọng: Không cho phép thấp hơn 32px */
+    padding: 0px;
+    /* Các thuộc tính làm đẹp */
+    border-radius: 50%;
+    border: 2px solid #ddd;
+    margin-left: 10px;
+    margin-top: 0px;
+    object-fit: cover;
+    /* Đảm bảo flexbox không bóp méo */
+    flex-shrink: 0; 
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 120%;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 100;
+    border-radius: 4px;
+    overflow: hidden;
+}
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    font-size: 0.9em;
+}
+.dropdown-content a:hover { background-color: #f1f1f1; }
+.dropdown-show {
+    display: block;
+}
+
+
+/* === NAVIGATION (TRÀN 100%) === */
+#navigation {
+    background: #fafafa;
+    border-bottom: 1px solid #999;
+    width: 100%;
+    height: 40px;
+    list-style: none;
+}
+#navigation ul {
+    height: 100%;
+    overflow: hidden; /* Chứa các <li> */
+}
+#navigation li {
+    border-left: 1px solid #999;
+    float: left;
+    list-style: none;
+    
+    /* Căn dọc (cho <select>) */
+    vertical-align: middle;
+    text-align: center; 
+}
+#navigation a {
+    color: #555;
+    display: block;
+    line-height: 40px; /* Căn dọc cho link */
+    text-align: center;
+    padding: 0 20px; /* Dùng padding linh hoạt */
+}
+#navigation a:hover {
+    background: #e3e3e3;
+    color: #555;
+}
+/* Style cho <select> thể loại */
+#navigation li select {
+    margin-top: 0; 
+    padding: 8px 5px;
+    font-weight: normal; 
+    font-family: inherit; 
+    font-size: 1em; 
+    color: #555;
+    border: none; 
+    background-color: transparent; 
+    cursor: pointer; 
+    height: 40px; /* Cho cao bằng thanh menu */
+}
+#navigation li select option {
+    background-color: white;
+    color: black;
+}
+
+
+/* === CONTENT (HÓP VÀO 80%) === */
+/* content */
+#content {
+    
+    height:auto;
+    min-height: 400px; 
+    margin: 20px auto; 
+    padding: 20px;
+    width: 90%;
+    max-width: 1500px;
+    border-radius: 5px;
+    
+    /* --- THÊM DÒNG NÀY ĐỂ ĐẨY FOOTER XUỐNG --- */
+    /* flex-grow: 1; */
+}
+#content h1 {
+    border-bottom: 1px dashed #999;
+    font-size: 1.8em;
+    padding: 20px 0 0;
+}
+#content p {
+    padding: 20px 20px 0;
+}
+
+/* === FOOTER (HÓP VÀO 80%) === */
+/* footer */
+#footer {
+    margin-top: auto;
+    
+    /* --- THÊM DÒNG NÀY (Giống hệt #navigation) --- */
+    background-color: rgba(255, 255, 255, 0.85); 
+    
+    border-top:1px solid #999; 
+    height:auto;
+    padding:10px;
+    text-align:center;
+    width: 100%; /* <-- SỬA THÀNH 100% */
+    
+    /* (Xóa width: 80%, max-width, margin, và border-radius) */
+}
+/* Style cho .book-grid, .book-cell của bạn */
+/* === XÓA HOẶC THAY THẾ CSS GRID CŨ BẰNG CSS NÀY === */
+/* (Dán vào cuối file includes/style.css) */
+
+
+/* === THANH TÌM KIẾM (SỬA LẠI THEO ẢNH MẪU) === */
+#header-search {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 40%; /* Yêu cầu của bạn: 35% */
+}
+
+/* Thêm wrapper để chứa input và button */
+#header-search .search-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+/* Sửa input[type="text"] thành input[type="search"] */
+#header-search input[type="search"] {
+     width: 100%; /* Chiếm 100% .search-wrapper */
+     
+     /* Style giống ảnh */
+     padding: 12px 40px 12px 15px; /* Đủ chỗ cho icon bên phải */
+     font-size: 0.9em;
+     border-radius: 20px; /* Bo tròn */
+     border: 1px solid #ccc; /* Viền xám nhạt */
+     
+     /* Bỏ style cũ */
+     font-weight: normal;
+     color: #333;
+     background: #FFFFFF;
+}
+/* Ẩn nút "Tìm" cũ (nếu có) */
+#header-search input[type="submit"] {
+    display: none; 
+}
+
+/* Thêm nút submit dạng icon kính lúp */
+#header-search button[type="submit"] {
+    position: absolute;
+    right: 15px; /* Đặt icon ở bên phải */
+    top: 50%;
+    transform: translateY(-50%);
+    
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1em; /* Kích thước icon */
+    color: #555;
+    padding: 0;
+}
+    /* 1. Khung chứa form */
+    .login-form-container {
+        width: 450px; /* Độ rộng của khung */
+        margin: 40px auto; /* Căn giữa (auto) và tạo khoảng cách (40px) */
+        padding: 30px;
+        background-color: #f9f9f9; /* Nền hơi xám */
+        border: 1px solid #ddd;
+        border-radius: 8px; /* Bo tròn góc */
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+    
+    /* 2. Tiêu đề "Đăng nhập" */
+    .login-form-container h1 {
+        text-align: center; /* Căn giữa chữ */
+        border-bottom: none; /* Bỏ gạch dashed của style.css */
+        padding-top: 0;
+        margin-bottom: 25px;
+        color: #333;
+    }
+
+    /* 3. Nhóm (Label + Input) */
+    .form-group {
+        margin-bottom: 20px; /* Khoảng cách giữa các ô */
+    }
+    
+    .form-group label {
+        display: block; /* Label nằm 1 hàng riêng */
+        margin-bottom: 5px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    /* 4. Ô Input (Ghi đè style.css) */
+    .form-group input[type="text"],
+    .form-group input[type="password"] {
+        width: 100%; /* Input chiếm 100% chiều rộng khung */
+        padding: 10px; /* Tăng chiều cao ô input */
+        border: 1px solid #ccc; /* Viền xám, liền nét */
+        border-radius: 4px;
+        font-size: 1em;
+        color: #333; /* Màu chữ đen */
+        background: #fff; /* Nền trắng */
+    }
+
+    /* 5. Nút Submit (Ghi đè style.css) */
+    .form-group input[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        font-weight: bold;
+        font-size: 1.1em;
+        color: #ffffff;
+        background: #337ab7; /* Màu xanh (giống nút login ở header) */
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    .form-group input[type="submit"]:hover {
+        background: #286090;
+    }
+/* === BỐ CỤC 2 CỘT (MỚI) === */
+/* (Dán vào cuối file includes/style.css) */
+
+/* 1. Wrapper 2 cột (dùng Flexbox) */
+.content-container-2col {
+    display: flex;
+    width: 100%;
+    gap: 20px; /* Khoảng cách giữa 2 cột */
+}
+
+/* 2. Cột trái 70% (Chính) */
+.main-content {
+    width: 70%; 
+}
+
+/* 3. Cột phải 30% (Sidebar) */
+.sidebar-content {
+    width: 30%; 
+    
+         /* Ngăn cách 2 cột */
+}
+
+/* === THÊM LẠI CSS CHO LƯỚI SÁCH === */
+/* (Dán vào cuối file includes/style.css) */
+
+.book-grid {
+    overflow: hidden; 
+    /* Thêm: Căn giữa các ô nếu hàng cuối không đủ */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    background-color: rgba(255, 255, 255, 0.7); 
+    
+    border-radius: 5px;
+}
+.book-cell {
+    float: left;
+    width: 200px; 
+    margin: 10px; 
+    text-align: center; 
+    border: 1px solid #ccc;
+    padding: 5px;
+    background-color: #fddedc; /* Giống màu nền table */
+    height: 250px; 
+    border-radius: 5px;
+}
+.book-cell img {
+    width:100%;
+    height: 90%;
+    object-fit: cover; 
+}
+.book-cell a {
+    text-decoration: none; 
+    color: black;
+}
+.book-cell .book-title {
+    font-weight: bold;
+    margin-top: 5px;
+    height: 20px; 
+    overflow: hidden;
+}
+
+/* === CSS MỚI CHO SIDEBAR (TOP 10) === */
+.sidebar-widget {
+    background-color: rgba(255, 255, 255, 0.7); 
+    
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    position: sticky; /* Dính lại khi cuộn */
+    top: 20px;
+}
+.widget-title {
+    font-size: 1.7em;
+    font-weight: bold;
+    color: #ae1c55; /* Dùng màu theme của bạn */
+    border-bottom: 2px solid #eee;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+.top-books-list {
+    list-style: none; 
+    margin: 0;
+    padding: 0;
+}
+.top-books-list li {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed #ccc;
+}
+.top-books-list li:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+.top-books-list li a {
+    display: flex; /* Bố cục (Ảnh | Tiêu đề) */
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+}
+.top-books-list li a:hover span {
+    color: #ae1c55;
+}
+.top-books-list li img {
+    width: 100px;  /* Sửa: Đặt chiều rộng CỐ ĐỊNH */
+    height: 140px; /* Sửa: Đặt chiều cao CỐ ĐỊNH */
+    
+    /* DÒNG NÀY LÀ QUAN TRỌNG NHẤT: */
+    object-fit: cover; /* Lệnh này "cắt" ảnh để vừa khung 50x70 mà không bị méo */
+    
+    margin-right: 10px;
+    border-radius: 3px;
+    flex-shrink: 0;
+}
+.top-book-info {
+    display: flex;
+    flex-direction: column;
+    height: 20px;
+}
+.top-books-list li span {
+    font-size: 1.2em;
+    font-weight: bold;
+    line-height: 1.3;
+}
+.top-books-list li small {
+    font-size: 1.1em;
+    color: #777;
+    margin-top: 4px;
+}
+
+/*Chi tiết sách*/
+    /* ... (Toàn bộ style cũ của bạn giữ nguyên) ... */
+    .book-detail-table {
+        width: 90%;
+        margin: 0 auto;
+        border: 1px solid #ae1c55;
+        background-color: rgba(254, 222, 220, 0.7);
+        padding: 15px;
+        border-spacing: 15px;
+        border-radius: 5px;
+    }
+    .book-detail-image-cell {
+        width: 30%;
+        vertical-align: top;
+        text-align: center;
+    }
+    .book-detail-image-cell img {
+       width: 250px;
+       height: 350px;
+       object-fit: cover;
+       border: 2px solid #ae1c55;
+    }
+    .book-detail-info-cell {
+        width: 70%;
+        vertical-align: top;
+    }
+    .book-detail-info-cell h1 {
+        margin-top: 0;
+        margin-bottom: 10px;
+        color: #ae1c55;
+    }
+    .book-detail-info-cell div {
+        margin-top: 0;
+        margin-bottom: 10px;
+    }
+   
+    
+   
+    
+    /* --- CSS MỚI CHO THỐNG KÊ --- */
+    .book-stats {
+        margin-top: 10px;
+        color: #555;
+        font-size: 13px;
+    }
+    
+    .book-description-title {
+         margin-top: 15px;
+         margin-bottom: 5px;
+    }
+    .book-description-text {
+        margin-top: 0;
+        text-align: justify;
+    }
+    
+    .book-theloai-link {
+        background-color:#e8f4fd;
+        
+        padding: 3px 6px 3px 6px;
+        color: #318bc6;
+        margin: 5px;
+        text-decoration: none;
+        border-radius: 10px;
+        border-width: 1px;
+        border-color: #63b0e4;
+        border-style: dashed;
+    }
+    .book-tacgia-link {
+        background-color:#f4e8fd;
+        
+        padding: 3px 6px 3px 6px;
+        color: #a365bd;
+        margin: 5px;
+        text-decoration: none;
+        border-radius: 10px;
+        border-width: 1px;
+        border-color: #a365bd;
+        border-style: dashed;
+    }
+/* === CSS CHUNG CHO TRANG TÌM KIẾM (RESULT CARD) === */
+/* ================================================= */
+
+.search-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px auto;
+}
+
+/* Tiêu đề kết quả */
+.search-heading {
+    border-left: 5px solid #ae1c55;
+    padding-left: 15px;
+    margin-bottom: 25px;
+    color: #333;
+    font-size: 1.5em;
+    text-transform: uppercase;
+}
+
+/* Khung bao quanh 1 kết quả (Card) */
+.search-card {
+    display: flex;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    transition: transform 0.2s;
+}
+.search-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border-color: #ae1c55;
+}
+
+/* Cột Trái: Ảnh bìa */
+.card-left {
+    width: 180px;
+    flex-shrink: 0;
+    position: relative;
+}
+.card-left img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Nhãn tình trạng đè lên ảnh */
+.status-label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    background-color: rgba(40, 167, 69, 0.9); /* Xanh lá */
+    color: white;
+    font-size: 0.8em;
+    padding: 5px 0;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.status-label.tam-ngung { background-color: rgba(108, 117, 125, 0.9); } /* Xám */
+.status-label.hoan-thanh { background-color: rgba(0, 123, 255, 0.9); } /* Xanh dương */
+
+/* Cột Phải: Thông tin */
+.card-right {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Tên sách */
+.card-title {
+    margin: 0 0 10px 0;
+    font-size: 1.4em;
+}
+.card-title a {
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+}
+.card-title a:hover { color: #ae1c55; }
+
+/* Tags Thể loại */
+.card-tags {
+    margin-bottom: 10px;
+}
+.genre-tag {
+    display: inline-block;
+    font-size: 0.75em;
+    padding: 3px 10px;
+    border: 1px solid #17a2b8;
+    color: #17a2b8;
+    border-radius: 15px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    background-color: #f0fbfc;
+    text-decoration: none;
+}
+.genre-tag:hover { background-color: #17a2b8; color: white; }
+
+/* Thông tin Tác giả */
+.card-meta {
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 15px;
+    font-style: italic;
+}
+
+/* Mô tả ngắn */
+.card-desc {
+    font-size: 0.95em;
+    color: #444;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    flex-grow: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3; /* Cắt dòng thứ 3 */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Nút Xem chi tiết */
+.btn-detail {
+    align-self: flex-end;
+    padding: 8px 20px;
+    background-color: transparent;
+    color: #333;
+    border: 1px solid #333;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 4px;
+    transition: 0.3s;
+}
+.btn-detail:hover {
+    background-color: #333;
+    color: white;
+}
+
+/* Responsive Mobile */
+@media (max-width: 600px) {
+    .search-card { flex-direction: column; }
+    .card-left { width: 100%; height: 250px; }
+    .btn-detail { align-self: stretch; text-align: center; }
+}
+
+/* ============================================== */
+/* === CSS RIÊNG CHO FORM TÌM KIẾM NÂNG CAO === */
+/* ============================================== */
+table.search-form-table {
+    background-color: #fee0c1;
+    margin: 0 auto 30px auto; /* Căn giữa */
+    border-collapse: collapse;
+    border: 1px solid #ae1c55;
+}
+table.search-form-table th {
+    font-size: 24px;
+    background-color: #ae1c55;
+    color: white;
+    padding: 10px;
+}
+table.search-form-table td {
+    padding: 10px;
+    text-align: center;
+}
+.search-input {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.btn-search-submit {
+    background-color: #ae1c55;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 4px;
+}
+.btn-search-submit:hover { background-color: #881240; }
