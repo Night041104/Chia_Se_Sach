@@ -45,7 +45,7 @@ if (session_status() === PHP_SESSION_NONE) {
             
             <form id="header-search" action="tim_kiem_sach.php" method="GET">
                 <div class="search-wrapper">
-                    <input type="search" name="tensach" placeholder="Tìm kiếm theo tên sách..."/>
+                    <input type="search" name="tensach" placeholder="Nhập tên sách để tìm kiếm..."/>
                     <button type="submit">&#128269;</button> 
                 </div>
             </form>
