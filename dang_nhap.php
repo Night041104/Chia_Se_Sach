@@ -19,25 +19,25 @@ $from = isset($_GET['from']) ? $_GET['from'] : '';
 // 1.2: Xử lý POST
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-    $dbc = mysqli_connect("localhost","root","","chiasesach") or die("Không kết nối được MySQL");
-    mysqli_set_charset($dbc, 'UTF8');
+    $conn = mysqli_connect("localhost","root","","chiasesach") or die("Không kết nối được MySQL");
+    mysqli_set_charset($conn, 'UTF8');
 
     if (empty($_POST['email'])) {
         $errors[] = 'Bạn quên nhập Email.';
     } else {
-        $e = mysqli_real_escape_string($dbc, trim($_POST['email']));
+        $e = mysqli_real_escape_string($conn, trim($_POST['email']));
     }
     
     if (empty($_POST['pass'])) {
         $errors[] = 'Bạn quên nhập Mật khẩu.';
     } else {
-        $p = mysqli_real_escape_string($dbc, trim($_POST['pass']));
+        $p = mysqli_real_escape_string($conn, trim($_POST['pass']));
     }
     
     if (empty($errors)) {
         // Lấy mật khẩu hash VÀ tên từ CSDL
         $q = "SELECT userID, hoUser, tenUser, roleID, avatar, password FROM users WHERE email='$e'";
-        $r = @mysqli_query($dbc, $q);
+        $r = @mysqli_query($conn, $q);
         
         if (mysqli_num_rows($r) == 1) {
             $row = mysqli_fetch_array($r, MYSQLI_ASSOC);
@@ -66,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $errors[] = 'Email hoặc mật khẩu không đúng.';
         }
     }
-    mysqli_close($dbc);
+    mysqli_close($conn);
 } 
 
 // BƯỚC 2: BẮT ĐẦU HIỂN THỊ HTML
