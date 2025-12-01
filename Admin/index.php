@@ -155,7 +155,7 @@ mysqli_close($conn);
             <div class="card-stat"><?php echo $count_user; ?></div>
             <div class="card-actions">
                 <a href="admin_index_user.php" class="btn-admin btn-view">Xem DS</a>
-               
+                <a href="them_user.php" class="btn-admin btn-add">Thêm Mới</a>
             </div>
         </div>
 

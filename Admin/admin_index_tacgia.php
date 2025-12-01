@@ -85,6 +85,8 @@ include ('../includes/db_connect.php');
         
         mysqli_close($conn);
      ?>
-     
+     <div style="text-align:center; margin-top:20px;">
+        <a href="index.php" style="text-decoration:none; font-weight:bold; color:#555;">&laquo; Quay Về Dashboard</a>
+     </div>
 </body>
 </html>
