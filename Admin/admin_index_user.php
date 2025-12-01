@@ -69,10 +69,10 @@ include ('../includes/db_connect.php');
                     echo"<td align='center'>{$rows['ngayTao']}</td>";
                     echo"<td align='center'>".($rows['roleID']==1?'Admin':'User')."</td>"; 
                     // Cột Sửa
-                    echo"<td align='center'><a href='sua_user.php?matheloai={$rows['userID']}' >Sửa</a></td>";
+                    echo"<td align='center'><a href='sua_user.php?userID={$rows['userID']}' >Sửa</a></td>";
                     
                     // Cột Xóa
-                    echo"<td align='center'><a href='xoa_user.php?matheloai={$rows['userID']}' >Xóa</a></td>";
+                    echo"<td align='center'><a href='xoa_user.php?userID={$rows['userID']}' >Xóa</a></td>";
                     
                 echo"</tr>";
                 
