@@ -6,7 +6,8 @@
 -- Thời gian đã tạo: Th10 30, 2025 lúc 04:45 PM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.2.12
-
+CREATE database if not exists chiasesach;
+use chiasesach;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
