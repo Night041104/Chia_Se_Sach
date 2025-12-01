@@ -70,7 +70,7 @@ include ('../includes/db_connect.php');
                         
                         if(in_array($file_ext, $allowed)) {
                             // Đổi tên file để tránh trùng: email_time.jpg
-                            $new_avatar_name = time() . "_" . $email;
+                            $new_avatar_name = time() . "_" . $avatar_name;
                             $upload_path = "Hinh_user/" . $new_avatar_name;
                             
                             if(!move_uploaded_file($file_tmp, $upload_path)) {
