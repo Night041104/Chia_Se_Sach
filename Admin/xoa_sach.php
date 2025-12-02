@@ -9,9 +9,11 @@ include ('../includes/db_connect.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Xóa Thông Tin Sách</title>
     <style>
-        th { background-color: orange; color: red; }
-        table { background-color: #fee0c1; }
-        input, textarea { background-color: #fff2cc; }
+        th { background:#ae1c55; color:#fff; font-size:16px; }
+        table { background:#fddedc;
+                width: 600px; }
+        input, textarea { background:#fff; padding:5px; border:1px solid #bbb; width:300px; }
+
     </style>
 </head>
 <body>
@@ -91,8 +93,19 @@ include ('../includes/db_connect.php');
         <tr><th colspan="2" align="center"><input type="submit" name="sub" value="XÁC NHẬN XÓA VĨNH VIỄN"></th></tr>
     </table>
 
-    <div style="text-align:center; margin-top:20px;">
-        <a href="admin_index_sach.php"> Quay Về Trang Danh Sách</a>
+    <div style="text-align:center; margin-top:20px; margin-bottom: 20px;">
+        <a href="admin_index_sach.php" 
+        style="
+            color: #ae1c55; 
+            font-weight: bold; 
+            font-size: 14px; 
+            border: 2px solid #ae1c55; 
+            padding: 8px 18px;
+            border-radius: 6px;
+            text-decoration: none;
+        ">
+        &laquo; Quay Về Danh Sách
+    </a>
     </div>
 </form>
 </body>

@@ -1,6 +1,7 @@
 <?php
 include ('../includes/admin_protection.php'); 
 include ('../includes/db_connect.php'); 
+include ('../includes/phan_trang.php'); 
 ?>
 <!DOCTYPE html>
 <html>
@@ -11,11 +12,12 @@ include ('../includes/db_connect.php');
 </head>
 <body>
     <?php 
-        $sql = 'select userID, hoUser, tenUser, email, password, ngayTao, roleID, avatar from users ORDER BY userID ASC';
+        $p = new Phan_trang(4);
+        $sql = 'select userID, hoUser, tenUser, email, password, ngayTao, roleID, avatar from users ORDER BY userID ASC LIMIT '.$p->getLimitPage();
         $result = mysqli_query($conn,$sql);
 
         echo "<p align='center'><font size='5px' style='font-weight: bold;'>THÔNG TIN USERS</font></p>";
-        echo "<table align='center' width='1200' border='1' cellpadding='2'>";
+        echo "<table align='center' width='85%' border='1' cellpadding='2'>";
         
         echo '
             <tr style="color: #ae1c55; font-size:18px;">
@@ -82,11 +84,22 @@ include ('../includes/db_connect.php');
             }
         }
         echo "</table>";
-        
+        $p->paging(mysqli_query($conn,"SELECT * FROM users"));
         mysqli_close($conn);
      ?>
-      <div style="text-align:center; margin-top:20px;">
-        <a href="index.php" style="text-decoration:none; font-weight:bold; color:#555;">&laquo; Quay Về Dashboard</a>
-     </div>
+      <div style="text-align:center; margin-top:20px; margin-bottom: 20px;">
+        <a href="index.php" 
+        style="
+            color: #ae1c55; 
+            font-weight: bold; 
+            font-size: 14px; 
+            border: 2px solid #ae1c55; 
+            padding: 8px 18px;
+            border-radius: 6px;
+            text-decoration: none;
+        ">
+        &laquo; Quay Về Dashboard
+    </a>
+    </div>
 </body>
 </html>

@@ -93,8 +93,19 @@ include ('../includes/db_connect.php');
         </table>
     </form>
     
-    <div style="text-align:center; margin-top:20px;">
-        <a href="admin_index_theloai.php" style="text-decoration:none; font-weight:bold; color:#555;">&laquo; Quay Về Danh Sách</a>
+    <div style="text-align:center; margin-top:20px; margin-bottom: 20px;">
+        <a href="index.php" 
+        style="
+            color: #ae1c55; 
+            font-weight: bold; 
+            font-size: 14px; 
+            border: 2px solid #ae1c55; 
+            padding: 8px 18px;
+            border-radius: 6px;
+            text-decoration: none;
+        ">
+        &laquo; Quay Về Trang Quản Trị
+    </a>
     </div>
 </body>
 </html>

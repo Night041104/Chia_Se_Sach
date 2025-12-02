@@ -159,12 +159,7 @@ include ('../includes/db_connect.php');
         // --- XỬ LÝ PHP ---
         if(isset($_POST["them"]))
         {
-            // 1. Kết nối CSDL
-            if (!$conn) {
-                $conn = mysqli_connect("localhost","root","","chiasesach") or die("Không kết nối được MySQL");
-                mysqli_set_charset($conn, 'UTF8');
-            }
-
+            
             // 2. Lấy dữ liệu và Xử lý ký tự đặc biệt (SQL Injection)
             $masach = mysqli_real_escape_string($conn, $_POST["masach"]);
             $tensach = mysqli_real_escape_string($conn, $_POST["tensach"]);
@@ -293,9 +288,19 @@ include ('../includes/db_connect.php');
         
         if(isset($conn)) mysqli_close($conn);
     ?>
-    
-    <div style="text-align:center; margin:30px;">
-        <a href="admin_index_sach.php" style="text-decoration:none; font-weight:bold; color:#555;">&laquo; Quay Về Danh Sách</a>
+    <div style="text-align:center; margin-top:20px; margin-bottom: 20px;">
+        <a href="index.php" 
+        style="
+            color: #ae1c55; 
+            font-weight: bold; 
+            font-size: 14px; 
+            border: 2px solid #ae1c55; 
+            padding: 8px 18px;
+            border-radius: 6px;
+            text-decoration: none;
+        ">
+        &laquo; Quay Về Trang Quản Trị
+    </a>
     </div>
 </body>
 </html>

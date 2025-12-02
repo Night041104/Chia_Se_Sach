@@ -44,8 +44,19 @@ include ('../includes/db_connect.php');
         }
 
     ?>
-    <div style="text-align:center; margin-top:20px;">
-        <a href="admin_index_sach.php">Quay Về Danh Sách</a>
+    <div style="text-align:center; margin-top:20px; margin-bottom: 20px;">
+        <a href="admin_index_sach.php" 
+        style="
+            color: #ae1c55; 
+            font-weight: bold; 
+            font-size: 14px; 
+            border: 2px solid #ae1c55; 
+            padding: 8px 18px;
+            border-radius: 6px;
+            text-decoration: none;
+        ">
+        &laquo; Quay Về Danh Sách
+    </a>
     </div>
 
 </body>

@@ -9,17 +9,10 @@ include ('../includes/db_connect.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Xóa Thông Tin Thể Loại</title>
 <style>
-    /* Style y hệt file mẫu */
-    th{
-        background-color: orange;
-        color: red;
-    }
-    table{
-        background-color: #fee0c1;
-    }
-    input {
-        background-color: #fff2cc;
-    }
+   th { background:#ae1c55; color:#fff; font-size:16px; }
+table { background:#fddedc; width:600px; }
+input, textarea { background:#fff; padding:5px; border:1px solid #bbb; width:300px; }
+
 </style>
 </head>
 <body>
@@ -54,14 +47,14 @@ include ('../includes/db_connect.php');
             $result_delete = mysqli_query($conn,$sql_delete);
             if($result_delete)
             {
-                echo "<p style='color:green;' align='center'>Đã xóa thể loại thành công.</p>";
-                // Xóa dữ liệu trên form
-                $matheloai = $tenTL = "";
+                header("Location: admin_index_theloai.php");
+                exit();
             }else
             {
                 echo "<p style='color:red;' align='center'>Lỗi khi xóa!</p>";
             }
         }
+        
     }
     mysqli_close($conn);
 ?>
@@ -83,8 +76,19 @@ include ('../includes/db_connect.php');
         <tr><th colspan="2" align="center"><input type="submit" name="sub" value="Xóa"></th></tr>
     </table>
 
-    <div style="text-align:center; margin-top:20px;">
-        <a href="danh_sach_theloai.php"> Quay Về Trang Danh Sách</a>
+    <div style="text-align:center; margin-top:20px; margin-bottom: 20px;">
+        <a href="admin_index_theloai.php" 
+        style="
+            color: #ae1c55; 
+            font-weight: bold; 
+            font-size: 14px; 
+            border: 2px solid #ae1c55; 
+            padding: 8px 18px;
+            border-radius: 6px;
+            text-decoration: none;
+        ">
+        &laquo; Quay Về Danh Sách
+    </a>
     </div>
 </form>
 </body>

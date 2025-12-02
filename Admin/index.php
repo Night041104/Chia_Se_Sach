@@ -11,90 +11,118 @@ include ('../includes/db_connect.php');
     <link rel="stylesheet" href="../includes/style.css" type="text/css" media="screen" />
     
     <style>
-    /* Container chính */
-    .admin-dashboard {
-        width: 90%;
-        max-width: 1200px;
-        margin: 30px auto;
-        font-family: Arial, sans-serif;
-    }
+    /* --- Container chính --- */
+.admin-dashboard {
+    width: 95%;
+    max-width: 1300px;
+    margin: 30px auto;
+    font-family: Arial, sans-serif;
+}
 
-    .admin-title {
-        text-align: center;
-        color: #ae1c55;
-        margin-bottom: 30px;
-        border-bottom: 2px solid #eee;
-        padding-bottom: 10px;
-    }
+/* Tiêu đề dashboard */
+.admin-title {
+    text-align: center;
+    color: #ae1c55;   /* Màu đồng bộ với nút */
+    margin-bottom: 40px;
+    border-bottom: 3px solid #f0f0f0;
+    padding-bottom: 15px;
+    font-size: 2.2em;
+    letter-spacing: 1px;
+}
 
-    /* Lưới các thẻ (Cards) */
-    .admin-grid {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
-        justify-content: center;
-    }
 
-    /* Style cho từng thẻ */
-    .admin-card {
-        background: #fff;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        width: 300px;
-        padding: 20px;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-        transition: transform 0.2s;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    .admin-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 6px 12px rgba(0,0,0,0.1);
-    }
+/* Lưới card */
+.admin-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    justify-items: center;
+}
 
-    /* Tiêu đề thẻ */
-    .card-header {
-        font-size: 1.5em;
-        font-weight: bold;
-        color: #333;
-        margin-bottom: 10px;
-    }
-    
-    /* Số lượng thống kê */
+/* Card nâng cấp */
+.admin-card {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 320px;
+    padding: 25px 20px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.admin-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+
+/* Tiêu đề card */
+.card-header {
+    font-size: 1.6em;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/* Số lượng thống kê */
+.card-stat {
+    font-size: 3em;
+    color: #ae1c55;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Các nút bấm */
+.card-actions {
+    width: 100%;
+    display: flex;
+    gap: 12px;
+}
+.btn-admin {
+    flex: 1;
+    padding: 12px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 1em;
+    transition: all 0.2s ease;
+}
+.btn-view {
+    background-color: #337ab7;
+    color: white;
+}
+.btn-view:hover { 
+    background-color: #286090; 
+    transform: translateY(-2px);
+}
+
+.btn-add {
+    background-color: #5cb85c;
+    color: white;
+}
+.btn-add:hover { 
+    background-color: #449d44; 
+    transform: translateY(-2px);
+}
+
+/* Responsive nhẹ */
+@media (max-width: 600px) {
     .card-stat {
-        font-size: 2.5em;
-        color: #ae1c55;
-        font-weight: bold;
-        margin-bottom: 20px;
+        font-size: 2.2em;
     }
-
-    /* Các nút bấm */
-    .card-actions {
-        width: 100%;
-        display: flex;
-        gap: 10px;
+    .card-header {
+        font-size: 1.3em;
     }
     .btn-admin {
-        flex: 1;
-        padding: 10px;
-        text-align: center;
-        text-decoration: none;
-        border-radius: 4px;
-        font-weight: bold;
         font-size: 0.9em;
+        padding: 10px;
     }
-    .btn-view {
-        background-color: #337ab7;
-        color: white;
-    }
-    .btn-view:hover { background-color: #286090; }
-    
-    .btn-add {
-        background-color: #5cb85c;
-        color: white;
-    }
-    .btn-add:hover { background-color: #449d44; }
+}
 
 </style>
 </head>
@@ -161,6 +189,21 @@ mysqli_close($conn);
 
     </div>
 </div>
+<div style="text-align:center; margin-top:20px; margin-bottom: 20px;">
+   <a href="../index.php" 
+      style="
+         color: #ae1c55; 
+         font-weight: bold; 
+         font-size: 20px; 
+         border: 2px solid #ae1c55; 
+         padding: 8px 18px;
+         border-radius: 6px;
+         text-decoration: none;
+      ">
+      Quay Về Trang Người Dùng
+   </a>
+</div>
+
 
 <?php
 include('../includes/footer.html');

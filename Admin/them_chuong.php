@@ -143,6 +143,8 @@ include ('../includes/db_connect.php');
             <th style="font-size:20px">Tên Chương</th>
             <th style="font-size:20px">Tên File</th>
             <th style="font-size:20px">Ngày Đăng</th>
+            <th style="font-size:20px">Lượt Đọc</th>
+            <th style="font-size:20px">Lượt Tải</th>
             <th style="font-size:20px">Xóa</th>
         </tr>
         
@@ -164,6 +166,8 @@ include ('../includes/db_connect.php');
                         echo "<td align='center'>{$rows['TenChuong']}</td>";
                         echo "<td>{$rows['FilePath']}</td>";
                         echo "<td align='center'>{$rows['NgayDang']}</td>";
+                        echo "<td align='center'>{$rows['LuotDoc']}</td>";
+                        echo "<td align='center'>{$rows['LuotTai']}</td>";
                         
                         // Nút Xóa
                         echo "<td align='center'>
@@ -184,8 +188,19 @@ include ('../includes/db_connect.php');
         ?>
     </table>
     
-    <div style="text-align:center; margin-top:20px;">
-        <a href="admin_index_sach.php">Quay Về Danh Sách</a>
+   <div style="text-align:center; margin-top:20px; margin-bottom: 20px;">
+        <a href="admin_index_sach.php" 
+        style="
+            color: #ae1c55; 
+            font-weight: bold; 
+            font-size: 14px; 
+            border: 2px solid #ae1c55; 
+            padding: 8px 18px;
+            border-radius: 6px;
+            text-decoration: none;
+        ">
+        &laquo; Quay Về Danh Sách
+    </a>
     </div>
 
 </body>

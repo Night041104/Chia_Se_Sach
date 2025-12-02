@@ -1,8 +1,10 @@
 <?php # Script 3.4 - index.php
 $page_title = 'Chào mừng đến với Chia Sẻ Sách!';
 include ("includes/header.php");
+include ("includes/phan_trang.php");
 
 // 1. Kết nối CSDL
+$p = new Phan_trang(8);
 $conn = mysqli_connect("localhost","root","","chiasesach") or die("Không kết nối được MySQL");
 mysqli_set_charset($conn, 'UTF8');
 
@@ -13,12 +15,12 @@ $sql_all_books = "SELECT s.MaSach, s.TenSach, s.Hinh, s.TinhTrang,
                   FROM sach s
                   LEFT JOIN danh_gia dg ON s.MaSach = dg.MaSach
                   GROUP BY s.MaSach
-                  ORDER BY s.TenSach ASC";
+                  ORDER BY s.TenSach ASC LIMIT ".$p->getLimitPage();
 
 $result_all_books = mysqli_query($conn, $sql_all_books);
 
 // 3. QUERY 2: LẤY 10 SÁCH XEM NHIỀU NHẤT (cho Cột Phải)
-$sql_top_books = "SELECT MaSach, TenSach, Hinh, LuotDoc FROM sach ORDER BY LuotDoc DESC LIMIT 10";
+$sql_top_books = "SELECT MaSach, TenSach, Hinh, LuotDoc FROM sach ORDER BY LuotDoc DESC LIMIT 3";
 $result_top_books = mysqli_query($conn, $sql_top_books);
 ?>
 
@@ -124,6 +126,7 @@ $result_top_books = mysqli_query($conn, $sql_top_books);
         } else {
             echo "<p align='center'>Chưa có sách nào trong thư viện.</p>";
         }
+        $p->paging(mysqli_query($conn,"SELECT * FROM sach"));
         ?>
     </div> 
     

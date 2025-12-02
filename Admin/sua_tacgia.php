@@ -10,15 +10,31 @@ include ('../includes/db_connect.php');
     <title>Sửa Thông Tin Tác Giả</title>
     <style>
         th{
-            background-color: orange;
-            color: red;
-        }
-        table{
-            background-color: #fee0c1;
-        }
-        input, textarea { /* Thêm textarea vào style */
-            background-color: #fff2cc;
-        }
+    font-size:20px;
+    background:#ae1c55;
+    color:white;
+}
+
+table{
+    background:#fddedc;
+}
+
+td{
+    padding:5px;
+}
+
+input,
+textarea{
+    background:#fff;
+    border:1px solid #bbb;
+    width:300px;
+    padding:5px;
+}
+
+textarea{
+    height:80px;
+}
+
     </style>
 </head>
 <body>
@@ -91,5 +107,19 @@ include ('../includes/db_connect.php');
         <tr><th colspan="2"><input type="submit" name="sub" value="Cập Nhật"></th></tr>
     </table>
 </form>
+<div style="text-align:center; margin-top:20px; margin-bottom: 20px;">
+        <a href="admin_index_tacgia.php" 
+        style="
+            color: #ae1c55; 
+            font-weight: bold; 
+            font-size: 14px; 
+            border: 2px solid #ae1c55; 
+            padding: 8px 18px;
+            border-radius: 6px;
+            text-decoration: none;
+        ">
+        &laquo; Quay Về Danh Sách
+    </a>
+    </div>
 </body>
 </html>

@@ -1,6 +1,7 @@
 <?php
 include ('../includes/admin_protection.php'); 
 include ('../includes/db_connect.php');
+include ('../includes/phan_trang.php')
 ?>
 <!DOCTYPE html>
 <html>
@@ -11,7 +12,8 @@ include ('../includes/db_connect.php');
 </head>
 <body>
     <?php 
-        $sql = 'select MaSach, TenSach, MoTa, Hinh, TinhTrang from sach ORDER BY TenSach ASC';
+        $p = new Phan_trang(4);
+        $sql = 'select MaSach, TenSach, MoTa, Hinh, TinhTrang from sach ORDER BY TenSach ASC LIMIT '.$p->getLimitPage();
         $result = mysqli_query($conn,$sql);
 
         // 3. Tiêu đề
@@ -78,11 +80,22 @@ include ('../includes/db_connect.php');
             }
         }
         echo "</table>";
-        
+        $p->paging(mysqli_query($conn,"SELECT * FROM sach"));
         mysqli_close($conn);
      ?>
-     <div style="text-align:center; margin-top:20px;">
-        <a href="index.php" style="text-decoration:none; font-weight:bold; color:#555;">&laquo; Quay Về Dashboard</a>
-     </div>
+     <div style="text-align:center; margin-top:20px; margin-bottom: 20px;">
+        <a href="index.php" 
+        style="
+            color: #ae1c55; 
+            font-weight: bold; 
+            font-size: 14px; 
+            border: 2px solid #ae1c55; 
+            padding: 8px 18px;
+            border-radius: 6px;
+            text-decoration: none;
+        ">
+        &laquo; Quay Về Dashboard
+    </a>
+    </div>
 </body>
 </html>

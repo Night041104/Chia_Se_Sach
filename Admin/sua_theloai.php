@@ -9,17 +9,28 @@ include ('../includes/db_connect.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sửa Thông Tin Thể Loại</title>
     <style>
-         /* Style y hệt file mẫu */
         th{
-            background-color: orange;
-            color: red;
-        }
-        table{
-            background-color: #fee0c1;
-        }
-        input {
-            background-color: #fff2cc;
-        }
+    background:#ae1c55;
+    color:#fff;
+    font-size:18px;
+}
+
+table{
+    background:#fddedc;
+}
+
+td{
+    padding:5px;
+}
+
+input,
+textarea{
+    background:#fff;
+    width:300px;
+    padding:5px;
+    border:1px solid #bbb;
+}
+
     </style>
 </head>
 <body>
@@ -83,5 +94,19 @@ include ('../includes/db_connect.php');
         <tr><th colspan="2"><input type="submit" name="sub" value="Cập Nhật"></th></tr>
     </table>
 </form>
+<div style="text-align:center; margin-top:20px; margin-bottom: 20px;">
+        <a href="admin_index_theloai.php" 
+        style="
+            color: #ae1c55; 
+            font-weight: bold; 
+            font-size: 14px; 
+            border: 2px solid #ae1c55; 
+            padding: 8px 18px;
+            border-radius: 6px;
+            text-decoration: none;
+        ">
+        &laquo; Quay Về Danh Sách
+    </a>
+    </div>
 </body>
 </html>

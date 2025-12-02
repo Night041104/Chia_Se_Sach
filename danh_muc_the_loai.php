@@ -86,6 +86,20 @@ if (empty($matheloai)) {
 mysqli_close($conn);
 
 ?>
+ <div style="text-align:center; margin-top:20px; margin-bottom: 20px;">
+        <a href="index.php" 
+        style="
+            color: #ae1c55; 
+            font-weight: bold; 
+            font-size: 14px; 
+            border: 2px solid #ae1c55; 
+            padding: 8px 18px;
+            border-radius: 6px;
+            text-decoration: none;
+        ">
+        &laquo; Quay Về Trang Chủ
+    </a>
+    </div>
 
 <?php
 include ("includes/footer.html"); 
