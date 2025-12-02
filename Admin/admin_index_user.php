@@ -98,7 +98,7 @@ include ('../includes/phan_trang.php');
             border-radius: 6px;
             text-decoration: none;
         ">
-        &laquo; Quay Về Dashboard
+        &laquo; Quay Về Trang Quản Trị
     </a>
     </div>
 </body>

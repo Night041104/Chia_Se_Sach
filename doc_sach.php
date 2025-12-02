@@ -1,5 +1,6 @@
 <?php # Script doc_sach.php
 session_start();
+include ('includes/db_connect.php');
 
 // 1. BẢO VỆ: KIỂM TRA ĐĂNG NHẬP
 if (!isset($_SESSION['username'])) {
@@ -8,9 +9,6 @@ if (!isset($_SESSION['username'])) {
 }
 //userID
 $user_id = isset($_SESSION['user_id'])?$_SESSION['user_id']:0;
-// 2. KẾT NỐI CSDL
-$conn = mysqli_connect("localhost","root","","chiasesach") or die("Không kết nối được MySQL");
-mysqli_set_charset($conn, 'UTF8');
 
 // 3. KHỞI TẠO BIẾN
 $id_chuong = isset($_GET['id']) ? intval($_GET['id']) : 0;

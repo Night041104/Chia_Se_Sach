@@ -2,6 +2,9 @@
 // Include header (chứa session_start, CSS, Navbar...)
 $page_title = 'Tìm kiếm nâng cao';
 include ('includes/header.php'); 
+include ('includes/phan_trang.php');
+include ('includes/db_connect.php');
+
 ?>
 
 <!DOCTYPE html>
@@ -30,9 +33,7 @@ include ('includes/header.php');
                     <b>Thể loại:</b>
                     <select name="theloai" class="search-input">
                         <option value="">-- Tất cả --</option>
-                        <?php
-                            $conn = mysqli_connect("localhost","root","","chiasesach") or die("Lỗi kết nối");
-                            mysqli_set_charset($conn, 'UTF8');
+                        <?php    
                             
                             $sql_tl = "select MaTheLoai, TenTheLoai from theloai ORDER BY TenTheLoai ASC";
                             $result_tl = mysqli_query($conn, $sql_tl);

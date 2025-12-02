@@ -9,10 +9,8 @@ if (!isset($_SESSION['username'])) {
 
 $page_title = 'Trang cá nhân';
 include ('includes/header.php');
+include ('includes/db_connect.php');
 
-// 2. KẾT NỐI CSDL
-$conn = mysqli_connect("localhost","root","","chiasesach") or die("Lỗi kết nối MySQL");
-mysqli_set_charset($conn, 'UTF8');
 
 $user_id = $_SESSION['user_id'];
 $user_mail = $_SESSION['email'];

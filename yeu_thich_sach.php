@@ -1,5 +1,6 @@
 <?php # Script yeu_thich_sach.php
 session_start();
+include ('includes/db_connect.php');
 
 // 1. Kiểm tra đăng nhập
 if (!isset($_SESSION['user_id'])) {
@@ -7,9 +8,6 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-// 2. Kết nối CSDL
-$conn = mysqli_connect("localhost","root","","chiasesach") or die("Lỗi kết nối");
-mysqli_set_charset($conn, 'UTF8');
 
 $user_id = $_SESSION['user_id'];
 $masach = isset($_GET['masach']) ? trim($_GET['masach']) : '';

@@ -2,7 +2,6 @@
 include ('../includes/admin_protection.php'); 
 include ('../includes/db_connect.php'); 
 ?>
-<!-- conmemaydungoccho -->
  <!DOCTYPE html>
  <html lang="en">
  <head>

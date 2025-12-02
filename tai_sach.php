@@ -1,5 +1,6 @@
 <?php
 session_start(); 
+include ('includes/db_connect.php');
 
 // 1. Bảo vệ
 if (!isset($_SESSION['username'])) {
@@ -11,9 +12,6 @@ if (!isset($_SESSION['username'])) {
 // --- [SỬA] Đổi $_GET['machuong'] thành $_GET['id'] ---
 if (isset($_GET['id'])) {
     $id_chuong = intval($_GET['id']);
-    
-    $conn = mysqli_connect("localhost","root","","chiasesach") or die("Lỗi kết nối");
-    mysqli_set_charset($conn, 'UTF8');
     
     // 3. Lấy thông tin File từ bảng CHUONG
     // --- [SỬA] WHERE id = '$id_chuong' ---                                                                                  

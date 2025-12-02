@@ -1,4 +1,5 @@
 <?php # Script dang_nhap.php
+include ('includes/db_connect.php');
 
 // BƯỚC 1: Bắt đầu session VÀ xử lý logic chuyển hướng
 if (session_status() === PHP_SESSION_NONE) {
@@ -19,8 +20,6 @@ $from = isset($_GET['from']) ? $_GET['from'] : '';
 // 1.2: Xử lý POST
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-    $conn = mysqli_connect("localhost","root","","chiasesach") or die("Không kết nối được MySql");
-    mysqli_set_charset($conn, 'UTF8');
 
     if (empty($_POST['email'])) {
         $errors[] = 'Bạn quên nhập Email.';

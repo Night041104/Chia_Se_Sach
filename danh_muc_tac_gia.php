@@ -1,14 +1,11 @@
 <?php # Script danh_muc_tac_gia.php
-
+include ('includes/db_connect.php');
 // --- 1. LẤY MÃ TÁC GIẢ VÀ THÔNG TIN ---
 $matg = '';
 if (isset($_GET['matg'])) { // Sửa: Lấy 'matg'
     $matg = $_GET['matg'];
 }
 
-// Kết nối CSDL
-$conn = mysqli_connect("localhost","root","","chiasesach") or die("Không kết nối được MySQL");
-mysqli_set_charset($conn, 'UTF8');
 
 // Lấy Tên tác giả để làm tiêu đề
 $author_name = "Không rõ"; // Sửa: Tên biến

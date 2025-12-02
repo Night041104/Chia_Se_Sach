@@ -1,12 +1,11 @@
 <?php # Script danh_gia.php
+include ('includes/db_connect.php');
 session_start();
 
 // 1. KẾT NỐI VÀ KIỂM TRA
 $masach = isset($_GET['masach']) ? trim($_GET['masach']) : '';
 if (empty($masach)) { echo "Lỗi: Thiếu mã sách."; exit(); }
 
-$conn = mysqli_connect("localhost","root","","chiasesach") or die("Lỗi kết nối");
-mysqli_set_charset($conn, 'UTF8');
 
 //  role_id = 1 là Admin 
 $is_admin = (isset($_SESSION['role_id']) && $_SESSION['role_id'] == 1);

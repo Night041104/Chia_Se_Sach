@@ -2,11 +2,10 @@
 $page_title = 'Chào mừng đến với Chia Sẻ Sách!';
 include ("includes/header.php");
 include ("includes/phan_trang.php");
+include ('includes/db_connect.php');
 
-// 1. Kết nối CSDL
+
 $p = new Phan_trang(8);
-$conn = mysqli_connect("localhost","root","","chiasesach") or die("Không kết nối được MySQL");
-mysqli_set_charset($conn, 'UTF8');
 
 // 2. QUERY 1: LẤY TẤT CẢ SÁCH + ĐIỂM ĐÁNH GIÁ TRUNG BÌNH
 // Sử dụng LEFT JOIN để lấy điểm từ bảng danh_gia và hàm AVG để tính trung bình

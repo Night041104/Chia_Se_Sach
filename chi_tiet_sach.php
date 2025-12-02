@@ -1,11 +1,9 @@
 <?php # Script chi_tiet_sach.php
+include ('includes/db_connect.php');
 
 // 1. LẤY MÃ SÁCH TỪ URL VÀ KẾT NỐI CSDL
 $masach = isset($_GET['masach']) ? trim($_GET['masach']) : ''; 
 
-// Kết nối CSDL
-$conn = mysqli_connect("localhost","root","","chiasesach") or die("Không kết nối được MySQL");
-mysqli_set_charset($conn, 'UTF8');
 
 $book_found = false;
 $page_title = 'Không tìm thấy sách'; 

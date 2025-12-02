@@ -1,20 +1,19 @@
 <?php # Script quen_mat_khau.php
 $page_title = 'Quên mật khẩu';
 include ('includes/header.php');
+include ('includes/db_connect.php');
 
 $errors = array();
 $success = false;
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-    $dbc = mysqli_connect("localhost", "root", "", "chiasesach") or die("Không kết nối được MySQL");
-    mysqli_set_charset($dbc, 'UTF8');
 
     // 1. Kiểm tra Email
     if (empty($_POST['email'])) {
         $errors[] = 'Vui lòng nhập Email.';
     } else {
-        $e = mysqli_real_escape_string($dbc, trim($_POST['email']));
+        $e = mysqli_real_escape_string($conn, trim($_POST['email']));
     }
 
     // 2. Kiểm tra mật khẩu mới
@@ -22,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($_POST['pass1'] != $_POST['pass2']) {
             $errors[] = 'Mật khẩu xác nhận không trùng khớp.';
         } else {
-            $np = mysqli_real_escape_string($dbc, trim($_POST['pass1']));
+            $np = mysqli_real_escape_string($conn, trim($_POST['pass1']));
         }
     } else {
         $errors[] = 'Vui lòng nhập mật khẩu mới.';
@@ -31,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (empty($errors)) {
         // Kiểm tra xem Email có tồn tại không
         $q_check = "SELECT userID FROM users WHERE email='$e'";
-        $r_check = @mysqli_query($dbc, $q_check);
+        $r_check = @mysqli_query($conn, $q_check);
 
         if (mysqli_num_rows($r_check) == 1) {
             // Email tồn tại -> Cập nhật mật khẩu mới
@@ -39,9 +38,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $hashed_pass = password_hash($np, PASSWORD_DEFAULT); 
             
             $q_update = "UPDATE users SET password='$hashed_pass' WHERE email='$e'";
-            $r_update = @mysqli_query($dbc, $q_update);
+            $r_update = @mysqli_query($conn, $q_update);
 
-            if (mysqli_affected_rows($dbc) == 1) {
+            if (mysqli_affected_rows($conn) == 1) {
                 $success = true;
             } else {
                 $errors[] = 'Lỗi hệ thống: Không thể đổi mật khẩu (có thể mật khẩu mới giống mật khẩu cũ).';
@@ -50,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $errors[] = 'Địa chỉ Email này không tồn tại trong hệ thống.';
         }
     }
-    mysqli_close($dbc);
+    mysqli_close($conn);
 }
 ?>
 

@@ -1,4 +1,5 @@
 <?php # Script danh_muc_the_loai.php
+include ('includes/db_connect.php');
 
 // --- 1. LẤY MÃ THỂ LOẠI VÀ THÔNG TIN ---
 $matheloai = '';
@@ -7,8 +8,6 @@ if (isset($_GET['matheloai'])) {
 }
 
 // Kết nối CSDL
-$conn = mysqli_connect("localhost","root","","chiasesach") or die("Không kết nối được MySQL");
-mysqli_set_charset($conn, 'UTF8');
 
 // Lấy Tên thể loại để làm tiêu đề
 $category_name = "Không rõ";

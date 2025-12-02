@@ -7,6 +7,7 @@ if (isset($_GET['tensach'])) {
 
 $page_title = 'Tìm kiếm: ' . htmlspecialchars($search_query);
 include ("includes/header.php");
+include ('includes/db_connect.php');
 ?>
 
 
@@ -14,9 +15,6 @@ include ("includes/header.php");
 <div class="search-container">
 
     <?php
-    $conn = mysqli_connect("localhost","root","","chiasesach") or die("Lỗi kết nối MySQL");
-    mysqli_set_charset($conn, 'UTF8');
-
     if ($search_query != "") {
         $safe_query = mysqli_real_escape_string($conn, $search_query);
 

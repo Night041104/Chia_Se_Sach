@@ -21,7 +21,7 @@
         public function paging($sql_query)
 {
     $numRows = mysqli_num_rows($sql_query);
-    $maxPage = floor($numRows/$this->rowsPerPage) + 1;                
+    $maxPage = ceil($numRows/$this->rowsPerPage);                
     if(!isset($_GET['page']))
     {
         $_GET['page']=1;
