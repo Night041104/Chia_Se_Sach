@@ -1,12 +1,10 @@
-<?php # Script dang_nhap.php
+<?php 
 include ('includes/db_connect.php');
 
-// BƯỚC 1: Bắt đầu session VÀ xử lý logic chuyển hướng
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// 1.1: Nếu người dùng đã đăng nhập, chuyển về trang chủ
 if (isset($_SESSION['username'])) {
     header('Location: index.php');
     exit();
@@ -17,7 +15,6 @@ $masach = isset($_GET['masach']) ? trim($_GET['masach']) : '';
 $id = isset($_GET['id']) ? trim($_GET['id']) : '';
 $from = isset($_GET['from']) ? $_GET['from'] : '';
 
-// 1.2: Xử lý POST
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
@@ -34,7 +31,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     
     if (empty($errors)) {
-        // Lấy mật khẩu hash VÀ tên từ CSDL
         $q = "SELECT userID, hoUser, tenUser, roleID, avatar, password FROM users WHERE email='$e'";
         $r = @mysqli_query($conn, $q);
         
@@ -68,11 +64,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     mysqli_close($conn);
 } 
 
-// BƯỚC 2: BẮT ĐẦU HIỂN THỊ HTML
 $page_title = 'Đăng nhập';
 include ('includes/header.php');
 
-// In lỗi (nếu có)
 if (!empty($errors)) {
     echo '<div style="width: 450px; margin: 20px auto; color: red;">';
     echo '<h3>Lỗi!</h3>';
@@ -86,7 +80,6 @@ if (!empty($errors)) {
 <div class="login-form-container">
     <h1>Đăng nhập</h1>
     
-    <!-- Giữ nguyên các tham số trên URL khi submit form (như masach, id, from) -->
     <form method="post" action="">
         
         <div class="form-group">

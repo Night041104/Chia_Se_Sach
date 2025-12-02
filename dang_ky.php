@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (empty($_POST['email'])) {
         $errors[] = 'Bạn quên nhập Email.';
     } elseif (!filter_var(trim($_POST['email']), FILTER_VALIDATE_EMAIL)) {
-        // [MỚI] Dòng này sẽ kiểm tra cấu trúc email (phải có @, dấu chấm, tên miền hợp lệ)
+        // Dòng này sẽ kiểm tra cấu trúc email (phải có @, dấu chấm, tên miền hợp lệ)
         $errors[] = 'Email không đúng định dạng (Ví dụ: tenban@gmail.com).';
     } else {
         $e = mysqli_real_escape_string($conn, trim($_POST['email']));

@@ -1,20 +1,13 @@
-<?php # Script chi_tiet_sach.php
+<?php 
 include ('includes/db_connect.php');
-
-// 1. LẤY MÃ SÁCH TỪ URL VÀ KẾT NỐI CSDL
 $masach = isset($_GET['masach']) ? trim($_GET['masach']) : ''; 
 
 
 $book_found = false;
 $page_title = 'Không tìm thấy sách'; 
 $chapters = []; 
-
-// 2. TRUY VẤN CSDL (ĐÃ TỐI ƯU HÓA)
 if (!empty($masach)) {
     
-    // --- [QUAN TRỌNG] GỘP 3 TRUY VẤN THÀNH 1 ---
-    // Sử dụng kỹ thuật: CONCAT(Ma, '$', Ten) để gói dữ liệu lại
-    // Sau đó GROUP_CONCAT để nối các gói lại với nhau
     $sql_sach = "SELECT s.*, 
                         GROUP_CONCAT(DISTINCT CONCAT(tg.MaTG, '$', tg.TenTG) SEPARATOR '|') as ListTacGia,
                         GROUP_CONCAT(DISTINCT CONCAT(tl.MaTheLoai, '$', tl.TenTheLoai) SEPARATOR '|') as ListTheLoai
@@ -33,7 +26,6 @@ if (!empty($masach)) {
         $page_title = $row_sach['TenSach']; 
         $book_found = true;
         
-        // QUERY CHƯƠNG (Vẫn giữ riêng vì nó là danh sách dọc, không gộp được)
         $sql_chuong = "SELECT id, TenChuong, FilePath FROM chuong WHERE MaSach = '$masach' ORDER BY id ASC";
         $result_chuong = mysqli_query($conn, $sql_chuong);
         
@@ -55,15 +47,12 @@ if (!empty($masach)) {
     }
 }
 
-// 3. INCLUDE HEADER
 include ("includes/header.php"); 
 
-// 4. HIỂN THỊ NỘI DUNG
 if ($book_found) {
     
     $hinh_path = "Admin/Hinh_sach/" . $row_sach['Hinh'];
     
-    // Logic nút Đọc
     $doc_link = "#"; 
     $alert_script = "onclick=\"alert('Sách này chưa có chương nào để đọc!'); return false;\"";
     
@@ -75,30 +64,18 @@ if ($book_found) {
 
     $danh_gia_link = "danh_gia.php?masach=" . $row_sach['MaSach'];
 
-    // Bảng layout
     echo "<table class='book-detail-table'>";
     echo "<tr>";
-
-    // CỘT 1: ẢNH BÌA
     echo "<td class='book-detail-image-cell'>";
     echo "<img src='{$hinh_path}' alt='" . $row_sach['TenSach'] . "' />";
     echo "</td>";
-
-    // CỘT 2: THÔNG TIN CHI TIẾT
-    echo "<td class='book-detail-info-cell'>";
-    
-    // Tên sách
-    echo "<h1>" . $row_sach['TenSach'] . "</h1>";
-    
-    // --- [XỬ LÝ HIỂN THỊ TÁC GIẢ] ---
+    echo "<td class='book-detail-info-cell'>";   
+    echo "<h1>" . $row_sach['TenSach'] . "</h1>";   
     echo "<div><b>Tác giả:</b> ";
     if (!empty($row_sach['ListTacGia'])) {
-        // Tách chuỗi "TG01$Nam Cao|TG02$Tô Hoài" thành mảng
         $arr_tg = explode('|', $row_sach['ListTacGia']);
-        $links = [];
-        
+        $links = [];      
         foreach($arr_tg as $tg_item) {
-            // Tách tiếp "TG01$Nam Cao" -> [0]=>TG01, [1]=>Nam Cao
             $parts = explode('$', $tg_item);
             if(count($parts) == 2) {
                 $links[] = "<a href='danh_muc_tac_gia.php?matg={$parts[0]}' class='book-tacgia-link'>{$parts[1]}</a>";
@@ -109,8 +86,6 @@ if ($book_found) {
         echo "Chưa cập nhật";
     }
     echo "</div>";
-
-    // --- [XỬ LÝ HIỂN THỊ THỂ LOẠI] ---
     echo "<div><b>Thể loại:</b> ";
     if (!empty($row_sach['ListTheLoai'])) {
         $arr_tl = explode('|', $row_sach['ListTheLoai']);
@@ -150,7 +125,6 @@ if ($book_found) {
                 <span>$text_status</span>
               </a>";
     } else {
-        // [Đã sửa lỗi khoảng trắng]
         echo "<a href='dang_nhap.php?masach=$masach&from=yeu_thich_sach.php' class='action-item heart' style='text-decoration:none;'>
                 <i class='far fa-heart'></i>
                 <span>Yêu thích</span>
@@ -191,8 +165,6 @@ if ($book_found) {
     echo "</td>";
     echo "</tr>";   
     echo "</table>";
-
-    // ... (Code Bình luận ở đây) ...
 
 } else {
     echo '<h1 align="center">Lỗi</h1>';

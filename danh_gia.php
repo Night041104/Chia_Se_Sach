@@ -1,4 +1,4 @@
-<?php # Script danh_gia.php
+<?php 
 include ('includes/db_connect.php');
 session_start();
 
@@ -10,7 +10,7 @@ if (empty($masach)) { echo "Lỗi: Thiếu mã sách."; exit(); }
 //  role_id = 1 là Admin 
 $is_admin = (isset($_SESSION['role_id']) && $_SESSION['role_id'] == 1);
 
-// --- [MỚI] XỬ LÝ LOGIC XÓA BÌNH LUẬN (Chỉ Admin mới chạy được) ---
+// XỬ LÝ LOGIC XÓA BÌNH LUẬN (Chỉ Admin mới chạy được) ---
 if ($is_admin && isset($_GET['xoa_id'])) {
     $xoa_id = intval($_GET['xoa_id']); // Lấy ID bình luận cần xóa
     
@@ -24,7 +24,6 @@ if ($is_admin && isset($_GET['xoa_id'])) {
         echo "<script>alert('Lỗi khi xóa: " . mysqli_error($conn) . "');</script>";
     }
 }
-// ------------------------------------------------------------------
 
 // Lấy tên sách để hiển thị tiêu đề
 $ten_sach = "Sách không tồn tại";
@@ -187,8 +186,6 @@ $res_all = mysqli_query($conn, $sql_all);
                                 </a>";
                 }
                 echo "      </div>"; 
-                // -----------------------------------------------------------
-
                 // Hiển thị sao vàng
                 echo "      <div class='review-stars-display'>";
                 for($k=0; $k < $rv['SoSao']; $k++) echo "&#9733;";
