@@ -32,7 +32,7 @@ include ("includes/header.php");
 
 
 <!-- SỬA TIÊU ĐỀ H1 -->
-<h1 align="center">Sách của tác giả: <?php echo $author_name; ?></h1>
+<h1 class="tentheloatacgia" align="center">Sách của tác giả: <?php echo $author_name; ?></h1>
 
 <?php
 // 5. TRUY VẤN VÀ HIỂN THỊ SÁCH
@@ -42,7 +42,7 @@ if (empty($matg)) { // Sửa: Kiểm tra 'matg'
     $sql_motaTG = "SELECT MoTaTG from tacgia where MaTG = '$matg'";
     $result_mota = mysqli_query($conn, $sql_motaTG);
     $row = mysqli_fetch_array($result_mota);
-    echo "<h4 style='text-align:justify;'>{$row['MoTaTG']}</h4>";
+    echo "<h4 class='motatacgia' style='text-align:justify;'>{$row['MoTaTG']}</h4>";
     // Sửa câu SQL: Dùng INNER JOIN với 'sach_tacgia'
     $sql_books = "SELECT s.MaSach, s.TenSach, s.Hinh 
                   FROM sach s

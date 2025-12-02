@@ -29,8 +29,7 @@ include ("includes/header.php"); // Giả sử bạn đã đổi tên file thàn
 ?>
 
 
-
-<h1 align="center">Thể loại: <?php echo $category_name; ?></h1>
+<h1 class="tentheloatacgia" align="center">Thể loại: <?php echo $category_name; ?></h1>
 
 <?php
 // 5. TRUY VẤN VÀ HIỂN THỊ SÁCH

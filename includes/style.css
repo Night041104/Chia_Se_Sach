@@ -529,8 +529,23 @@ body {
     }
    
     
-   
-    
+    .tentheloatacgia{
+        margin: 0 auto;
+        background-color: rgba(255, 255,255,85%);
+        margin-bottom: 10px;
+        border-radius: 5px;
+        padding:5px !important;
+        width: 40%;
+        
+    }
+    .motatacgia{
+        margin: 0 auto;
+        background-color: rgba(255, 255,255,85%);
+        margin-bottom: 10px;
+        border-radius: 5px;
+        padding:5px !important;
+        width: 80%;
+    }
     /* --- CSS MỚI CHO THỐNG KÊ --- */
     .book-stats {
         margin-top: 10px;
